@@ -4,41 +4,26 @@ import axios from "axios";
 import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
 import { BottomWarning } from "../components/BottomWarning";
-import { SubHeading } from "../components/SubHeading";
 import { Heading } from "../components/Heading";
+import { SubHeading } from "../components/SubHeading";
 
-export const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
-
   const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleSignIn = async () => {
     try {
-      const response = await axios.post(
-        url,
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-          role,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (response.status === 201) {
-        alert("Registration successful!");
-        navigate("/dashboard");
-      } else {
-        alert("Registration failed. Please try again.", response);
-      }
+      const response = await axios.post(url, {
+        email,
+        password,
+      });
+      const { id, firstName, email } = response.data;
+      navigate("/dashboard", {
+        state: { id, firstName, email },
+      });
     } catch (error) {
-      console.error("Error during signup", error);
+      console.error("Error during sign in", error);
       // Display error message or handle as needed
       if (error.response) {
         console.error("Error response data:", error.response.data);
@@ -54,23 +39,8 @@ export const Register = () => {
     <div className="bg-gray-200 h-screen flex justify-center">
       <div className="flex flex-col justify-center">
         <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
-          <Heading lable={"Register"} />
-          <SubHeading lable={"Enter your infromation to create an account"} />
-
-          <InputBox
-            label={"First Name"}
-            placeholder={"Ashutosh"}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-            }}
-          />
-          <InputBox
-            label={"Last Name"}
-            placeholder={"Bidaliya"}
-            onChange={(e) => {
-              setLastName(e.target.value);
-            }}
-          />
+          <Heading lable={"Sign In"} />
+          <SubHeading lable={"Enter your credentials to access your account"} />
           <InputBox
             label={"Email"}
             placeholder={"abc@example.com"}
@@ -86,12 +56,17 @@ export const Register = () => {
             }}
           />
           <div className="pt-3">
-            <Button onClick={handleRegister} label={"Register"} />
+            <Button
+              onClick={async () => {
+                handleSignIn();
+              }}
+              label={"Sign in"}
+            />
             <div>
               <BottomWarning
                 label={"Already have an account?"}
-                buttonText={"Sign In"}
-                to={"/signin"}
+                buttonText={"Register"}
+                to={"/register"}
               />
             </div>
           </div>
@@ -99,4 +74,4 @@ export const Register = () => {
       </div>
     </div>
   );
-};
+}
