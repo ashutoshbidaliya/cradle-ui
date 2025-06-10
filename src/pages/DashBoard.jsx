@@ -1,4 +1,9 @@
+import { use } from "react";
+import { useLocation } from "react-router-dom";
+
 export default function DashBoard() {
+  const location = useLocation();
+  const { id, firstName, email } = location.state || {};
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <div className="bg-white shadow-md rounded-lg p-6 w-96">

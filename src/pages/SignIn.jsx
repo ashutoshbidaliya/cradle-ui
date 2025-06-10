@@ -12,16 +12,22 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const url = "http://localhost:8080/api/v1/users/login"; // Replace with your actual API endpoint
+
   const handleSignIn = async () => {
     try {
       const response = await axios.post(url, {
         email,
         password,
       });
-      const { id, firstName, email } = response.data;
-      navigate("/dashboard", {
-        state: { id, firstName, email },
-      });
+      if (response.status === 200) {
+        // alert("Login successful!");
+        const { id, firstName, lastName, email: userEmail } = response.data;
+        // Store user data in localStorage or sessionStorage if needed
+        navigate("/dashboard", {
+          state: { id, firstName, lastName, email: userEmail },
+        });
+      }
     } catch (error) {
       console.error("Error during sign in", error);
       // Display error message or handle as needed
@@ -47,6 +53,7 @@ export default function SignIn() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            value={email}
           />
           <InputBox
             label={"Password"}
