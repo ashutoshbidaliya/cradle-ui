@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import ProfileBar from "../components/ProfileBar";
 import { ProfileCard } from "../components/ProfileCard";
+import { ProjectCard } from "../components/ProjectCard";
 
 export default function DashBoard() {
   const location = useLocation();
@@ -9,6 +10,9 @@ export default function DashBoard() {
     <div>
       <div>
         <ProfileCard></ProfileCard>
+      </div>
+      <div>
+        <ProjectCard></ProjectCard>
       </div>
 
       <div className="flex flex-row justify-between h-12 bg-gray-100 border-b-1 border-b-gray-200 shadow-md">
