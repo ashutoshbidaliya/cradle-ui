@@ -4,12 +4,16 @@ import { ProfileCard } from "../components/ProfileCard";
 import { ProjectCard } from "../components/ProjectCard";
 import { DocumentCard } from "../components/DocumentCard";
 import { UniversityCard } from "../components/UniversityCard";
+import { TopNavigation } from "../components/TopNavigation";
 
 export default function DashBoard() {
   const location = useLocation();
   const { id, firstName, email } = location.state || {};
   return (
     <div>
+      <div>
+        <TopNavigation></TopNavigation>
+      </div>
       <div>
         <ProfileCard></ProfileCard>
       </div>
