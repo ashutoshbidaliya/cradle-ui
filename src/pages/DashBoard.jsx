@@ -1,11 +1,34 @@
 import { useLocation } from "react-router-dom";
 import ProfileBar from "../components/ProfileBar";
+import { ProfileCard } from "../components/ProfileCard";
+import { ProjectCard } from "../components/ProjectCard";
+import { DocumentCard } from "../components/DocumentCard";
+import { UniversityCard } from "../components/UniversityCard";
+import { TopNavigation } from "../components/TopNavigation";
 
 export default function DashBoard() {
   const location = useLocation();
   const { id, firstName, email } = location.state || {};
   return (
     <div>
+      <div>
+        <TopNavigation></TopNavigation>
+      </div>
+      <div>
+        <ProfileCard></ProfileCard>
+      </div>
+      <div>
+        <ProjectCard></ProjectCard>
+      </div>
+
+      <div>
+        <DocumentCard></DocumentCard>
+      </div>
+
+      <div>
+        <UniversityCard></UniversityCard>
+      </div>
+
       <div className="flex flex-row justify-between h-12 bg-gray-100 border-b-1 border-b-gray-200 shadow-md">
         <div className="text-2xl font-medium text-blue-900 p-1 ">Cradle</div>
         <ProfileBar></ProfileBar>
