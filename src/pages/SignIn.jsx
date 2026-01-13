@@ -6,11 +6,13 @@ import { Button } from "../components/Button";
 import { BottomWarning } from "../components/BottomWarning";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/SubHeading";
+import { useAuthContext } from "../components/AuthProvider";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuthContext();
 
   const url = "http://localhost:8080/api/v1/users/login"; // Replace with your actual API endpoint
 
@@ -24,9 +26,8 @@ export default function SignIn() {
         // alert("Login successful!");
         const { id, firstName, lastName, email: userEmail } = response.data;
         // Store user data in localStorage or sessionStorage if needed
-        navigate("/dashboard", {
-          state: { id, firstName, lastName, email: userEmail },
-        });
+        login(response.data);
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("Error during sign in", error);

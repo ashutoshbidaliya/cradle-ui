@@ -7,8 +7,8 @@ import { UniversityCard } from "../components/UniversityCard";
 import { TopNavigation } from "../components/TopNavigation";
 
 export default function DashBoard() {
-  const location = useLocation();
-  const { id, firstName, email } = location.state || {};
+  //const location = useLocation();
+  //const { id, firstName, email } = location.state || {};
   return (
     <div>
       <div>
