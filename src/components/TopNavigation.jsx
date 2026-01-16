@@ -1,6 +1,9 @@
 import { Bell, Menu, Search, Settings } from "lucide-react";
+import { useAuthContext } from "../context/AuthProvider";
 
 export const TopNavigation = ({ inShowcase = false }) => {
+  const { user, loading } = useAuthContext();
+  if (loading) return null;
   return (
     <div className="bg-white rounded-2xl shadow-lg p-4">
       <div className="flex items-center justify-between gap-4">
@@ -34,9 +37,11 @@ export const TopNavigation = ({ inShowcase = false }) => {
 
           <div className="hidden md:flex items-center gap-3 pl-3 border-l">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center text-white font-semibold text-sm">
-              JD
+              {user.firstName.charAt(0)} {user.lastName.charAt(0)}
             </div>
-            <div className="text-sm font-semibold">John Doe</div>
+            <div className="text-sm font-semibold">
+              {user.firstName} {user.lastName}
+            </div>
             <div className="text-xs text-gray-500">Student</div>
           </div>
         </div>

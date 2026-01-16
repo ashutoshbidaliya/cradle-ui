@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 import { BottomWarning } from "../components/BottomWarning";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/SubHeading";
-import { useAuthContext } from "../components/AuthProvider";
+import { useAuthContext } from "../context/AuthProvider";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");

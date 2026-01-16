@@ -1,5 +1,5 @@
 import { Edit } from "lucide-react";
-import { useAuthContext } from "./AuthProvider";
+import { useAuthContext } from "../context/AuthProvider";
 
 export const ProfileCard = () => {
   const { user, loading } = useAuthContext();

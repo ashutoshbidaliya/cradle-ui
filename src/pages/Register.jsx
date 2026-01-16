@@ -16,6 +16,8 @@ export const Register = () => {
 
   const navigate = useNavigate();
 
+  const url = "http://localhost:8080/api/v1/users/register"; // Replace with your actual API endpoint
+
   const handleRegister = async () => {
     try {
       const response = await axios.post(
@@ -25,7 +27,7 @@ export const Register = () => {
           lastName,
           email,
           password,
-          role,
+          role: "STUDENT",
         },
         {
           headers: { "Content-Type": "application/json" },
