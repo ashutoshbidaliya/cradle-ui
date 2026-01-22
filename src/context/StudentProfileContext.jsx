@@ -35,7 +35,7 @@ export const StudentProfileProvider = ({ children }) => {
 
     const response = await axios.patch(
       `http://localhost:8080/api/v1/profiles/${profileId}`,
-      updatedProfile
+      updatedProfile,
     );
 
     setProfile(response.data);
@@ -49,5 +49,5 @@ export const StudentProfileProvider = ({ children }) => {
 };
 
 export const useStudentProfileContext = () => {
-  useContext(StudentProfileContext);
+  return useContext(StudentProfileContext);
 };
